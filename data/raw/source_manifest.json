@@ -1,0 +1,25 @@
+{
+  "dataset": "Marketing Funnel by Olist",
+  "dataset_url": "https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist",
+  "publisher_context": "https://github.com/olist/work-at-olist-marketing",
+  "download_url": "https://www.kaggle.com/api/v1/datasets/download/olistbr/marketing-funnel-olist",
+  "metadata_url": "https://www.kaggle.com/api/v1/datasets/view/olistbr/marketing-funnel-olist",
+  "downloaded_at_utc": "2026-10-16T13:40:28.385940+00:00",
+  "version": 2,
+  "last_updated": "2018-11-16T14:00:20.677Z",
+  "license_as_reported_by_publisher": "CC BY-NC-SA 4.0",
+  "archive_sha256": "d476efe8d16ab267ce10535859ed3dd2d6e186bbb50c9d405a1e7bc05c200171",
+  "archive_bytes": 284562,
+  "files": {
+    "olist_closed_deals_dataset.csv": {
+      "bytes": 171352,
+      "sha256": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+    },
+    "olist_marketing_qualified_leads_dataset.csv": {
+      "bytes": 703836,
+      "sha256": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573"
+    }
+  },
+  "preservation": "Original ZIP and exact decompressed CSV bytes; no edits or row removal.",
+  "integrity_scope": "ZIP CRC checked and local SHA256 recorded; no independent publisher checksum was provided."
+}

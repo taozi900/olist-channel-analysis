@@ -1,0 +1,108 @@
+{
+  "stage": "02_sqlite_import_and_basic_queries",
+  "generated_at_utc": "2026-10-17T02:30:47.192975+00:00",
+  "database": "D:\\github-upload\\olist_channel_analysis_starter\\data\\olist_marketing.sqlite3",
+  "database_action": "创建新数据库",
+  "source_files": {
+    "olist_closed_deals_dataset.csv": {
+      "bytes": 171352,
+      "sha256": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+    },
+    "olist_marketing_qualified_leads_dataset.csv": {
+      "bytes": 703836,
+      "sha256": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573"
+    }
+  },
+  "raw_csv_unchanged": true,
+  "queries": {
+    "table_counts": {
+      "title": "1. 两张原始表各有多少记录？",
+      "sql": "SELECT 'mql' AS table_name,\n       COUNT(*) AS row_count,\n       COUNT(DISTINCT mql_id) AS distinct_mql_count\nFROM mql\nUNION ALL\nSELECT 'closed_deals', COUNT(*), COUNT(DISTINCT mql_id)\nFROM closed_deals;",
+      "rows": [
+        {
+          "table_name": "mql",
+          "row_count": 8000,
+          "distinct_mql_count": 8000
+        },
+        {
+          "table_name": "closed_deals",
+          "row_count": 842,
+          "distinct_mql_count": 842
+        }
+      ]
+    },
+    "join_counts": {
+      "title": "2. LEFT JOIN后是否保留了全部线索？",
+      "sql": "SELECT COUNT(*) AS lead_count,\n       SUM(has_observed_won) AS observed_won_count,\n       SUM(1 - has_observed_won) AS no_observed_won_count,\n       SUM(date_order_issue) AS date_issue_count\nFROM lead_overview;",
+      "rows": [
+        {
+          "lead_count": 8000,
+          "observed_won_count": 842,
+          "no_observed_won_count": 7158,
+          "date_issue_count": 1
+        }
+      ]
+    },
+    "channel_counts": {
+      "title": "3. 各渠道带来多少线索？占全部线索多少？",
+      "sql": "SELECT origin_group AS channel,\n       COUNT(*) AS lead_count,\n       ROUND(100.0 * COUNT(*) / (SELECT COUNT(*) FROM lead_overview), 2) AS lead_share_pct\nFROM lead_overview\nGROUP BY origin_group\nORDER BY lead_count DESC, channel;",
+      "rows": [
+        {
+          "channel": "organic_search",
+          "lead_count": 2296,
+          "lead_share_pct": 28.7
+        },
+        {
+          "channel": "paid_search",
+          "lead_count": 1586,
+          "lead_share_pct": 19.83
+        },
+        {
+          "channel": "social",
+          "lead_count": 1350,
+          "lead_share_pct": 16.88
+        },
+        {
+          "channel": "unknown",
+          "lead_count": 1099,
+          "lead_share_pct": 13.74
+        },
+        {
+          "channel": "direct_traffic",
+          "lead_count": 499,
+          "lead_share_pct": 6.24
+        },
+        {
+          "channel": "email",
+          "lead_count": 493,
+          "lead_share_pct": 6.16
+        },
+        {
+          "channel": "referral",
+          "lead_count": 284,
+          "lead_share_pct": 3.55
+        },
+        {
+          "channel": "other",
+          "lead_count": 150,
+          "lead_share_pct": 1.88
+        },
+        {
+          "channel": "display",
+          "lead_count": 118,
+          "lead_share_pct": 1.48
+        },
+        {
+          "channel": "other_publicities",
+          "lead_count": 65,
+          "lead_share_pct": 0.81
+        },
+        {
+          "channel": "(未记录)",
+          "lead_count": 60,
+          "lead_share_pct": 0.75
+        }
+      ]
+    }
+  }
+}

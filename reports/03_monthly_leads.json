@@ -1,0 +1,63 @@
+{
+  "stage": "03_monthly_leads_sql_practice",
+  "generated_at_utc": "2026-10-17T02:43:18.325622+00:00",
+  "database": "D:\\github-upload\\olist_channel_analysis_starter\\data\\olist_marketing.sqlite3",
+  "database_sha256": "58ee16bf244689d6c23d7e7ec385bbc74fd01eca7e1d1ab9edc93c22c2e20284",
+  "source_mql_sha256": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573",
+  "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\03_monthly_leads.sql",
+  "sql_sha256": "bc59d3d3ddd3c31dc74696bb82187c310d1e7ec9281d58151f7d359c0588741d",
+  "executed_sql": "-- 第三步：按首次联系月份，统计样本中的营销线索记录数。\n-- SUBSTR(日期, 1, 7)：取YYYY-MM；例如2018-03-08变为2018-03。\n-- 先按月份从早到晚排列。运行成功后，可把最后一行改成：\n-- ORDER BY lead_count DESC, contact_month ASC;\n-- 再运行03_run_sql.py，就能查看线索最多的月份。\n\nSELECT\n    SUBSTR(first_contact_date, 1, 7) AS contact_month,\n    COUNT(*) AS lead_count\nFROM mql\nGROUP BY SUBSTR(first_contact_date, 1, 7)\nORDER BY lead_count DESC, contact_month ASC;",
+  "rows": [
+    {
+      "contact_month": "2018-04",
+      "lead_count": 1352
+    },
+    {
+      "contact_month": "2018-05",
+      "lead_count": 1303
+    },
+    {
+      "contact_month": "2018-03",
+      "lead_count": 1174
+    },
+    {
+      "contact_month": "2018-01",
+      "lead_count": 1141
+    },
+    {
+      "contact_month": "2018-02",
+      "lead_count": 1028
+    },
+    {
+      "contact_month": "2017-11",
+      "lead_count": 445
+    },
+    {
+      "contact_month": "2017-10",
+      "lead_count": 416
+    },
+    {
+      "contact_month": "2017-08",
+      "lead_count": 386
+    },
+    {
+      "contact_month": "2017-09",
+      "lead_count": 312
+    },
+    {
+      "contact_month": "2017-07",
+      "lead_count": 239
+    },
+    {
+      "contact_month": "2017-12",
+      "lead_count": 200
+    },
+    {
+      "contact_month": "2017-06",
+      "lead_count": 4
+    }
+  ],
+  "total_lead_count": 8000,
+  "monthly_counts_match_source": true,
+  "database_and_raw_mql_unchanged": true
+}

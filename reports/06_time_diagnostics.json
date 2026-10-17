@@ -1,0 +1,197 @@
+{
+  "stage": "06_observed_won_time_and_record_coverage",
+  "generated_at_utc": "2026-10-17T03:26:28.860655+00:00",
+  "duration_definition": "DATE(won_date) - DATE(first_contact_date)，单位日历天；仅已观察签约且日期有效者进入时长分布。",
+  "followup_cutoff": "未知；最大可见签约时间不是已证实的完整随访截止。",
+  "database_sha256": "58ee16bf244689d6c23d7e7ec385bbc74fd01eca7e1d1ab9edc93c22c2e20284",
+  "source_sha256": {
+    "olist_marketing_qualified_leads_dataset.csv": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573",
+    "olist_closed_deals_dataset.csv": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+  },
+  "database_and_raw_csv_unchanged": true,
+  "sql_dates_and_record_counts_match_raw": true,
+  "coverage": {
+    "lead_count": 8000,
+    "observed_won_count": 842,
+    "unmatched_won_count": 7158,
+    "first_contact_min": "2017-06-14",
+    "first_contact_max": "2018-05-31",
+    "won_min": "2017-12-05 02:00:00",
+    "won_max": "2018-11-14 18:04:19",
+    "date_issue_count": 1,
+    "won_after_last_contact_date_count": 177
+  },
+  "duration_status_counts": {
+    "valid_duration": 841,
+    "negative_interval": 1
+  },
+  "duration_summaries": [
+    {
+      "channel": "all_channels",
+      "matched_won_count": 842,
+      "valid_duration_count": 841,
+      "negative_interval_count": 1,
+      "invalid_date_count": 0,
+      "min_days": 0,
+      "p25_days": 5.0,
+      "median_days": 14.0,
+      "p75_days": 55.0,
+      "p90_days": 162.0,
+      "max_days": 427
+    },
+    {
+      "channel": "organic_search",
+      "matched_won_count": 271,
+      "valid_duration_count": 270,
+      "negative_interval_count": 1,
+      "invalid_date_count": 0,
+      "min_days": 0,
+      "p25_days": 6.0,
+      "median_days": 14.5,
+      "p75_days": 55.75,
+      "p90_days": 171.1,
+      "max_days": 353
+    },
+    {
+      "channel": "paid_search",
+      "matched_won_count": 195,
+      "valid_duration_count": 195,
+      "negative_interval_count": 0,
+      "invalid_date_count": 0,
+      "min_days": 0,
+      "p25_days": 5.5,
+      "median_days": 15.0,
+      "p75_days": 80.0,
+      "p90_days": 181.2,
+      "max_days": 373
+    },
+    {
+      "channel": "social",
+      "matched_won_count": 75,
+      "valid_duration_count": 75,
+      "negative_interval_count": 0,
+      "invalid_date_count": 0,
+      "min_days": 1,
+      "p25_days": 12.5,
+      "median_days": 30.0,
+      "p75_days": 84.0,
+      "p90_days": 151.2000000000001,
+      "max_days": 371
+    }
+  ],
+  "duration_buckets": [
+    {
+      "bucket": "0–7天",
+      "count": 283,
+      "share_pct": 33.650416171224734
+    },
+    {
+      "bucket": "8–30天",
+      "count": 271,
+      "share_pct": 32.22354340071344
+    },
+    {
+      "bucket": "31–60天",
+      "count": 92,
+      "share_pct": 10.93935790725327
+    },
+    {
+      "bucket": "61–90天",
+      "count": 45,
+      "share_pct": 5.35077288941736
+    },
+    {
+      "bucket": "91–180天",
+      "count": 83,
+      "share_pct": 9.869203329369798
+    },
+    {
+      "bucket": "181天及以上",
+      "count": 67,
+      "share_pct": 7.966706302021403
+    }
+  ],
+  "won_months": [
+    {
+      "won_month": "2017-12",
+      "observed_won_count": 3
+    },
+    {
+      "won_month": "2018-01",
+      "observed_won_count": 73
+    },
+    {
+      "won_month": "2018-02",
+      "observed_won_count": 113
+    },
+    {
+      "won_month": "2018-03",
+      "observed_won_count": 147
+    },
+    {
+      "won_month": "2018-04",
+      "observed_won_count": 207
+    },
+    {
+      "won_month": "2018-05",
+      "observed_won_count": 122
+    },
+    {
+      "won_month": "2018-06",
+      "observed_won_count": 57
+    },
+    {
+      "won_month": "2018-07",
+      "observed_won_count": 37
+    },
+    {
+      "won_month": "2018-08",
+      "observed_won_count": 33
+    },
+    {
+      "won_month": "2018-09",
+      "observed_won_count": 23
+    },
+    {
+      "won_month": "2018-10",
+      "observed_won_count": 21
+    },
+    {
+      "won_month": "2018-11",
+      "observed_won_count": 6
+    }
+  ],
+  "duration_anomalies": [
+    {
+      "mql_id": "b91cf8812365f50ff4bda4bcd6206b05",
+      "channel": "organic_search",
+      "first_contact_date": "2018-03-08",
+      "won_date": "2018-03-06 19:38:55",
+      "calendar_days_to_won": -2,
+      "duration_status": "negative_interval"
+    }
+  ],
+  "query_provenance": {
+    "coverage": {
+      "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\06_date_coverage.sql",
+      "sha256": "2bfe110298700edbf2991ebf72b87a0d9fb0df6919bccf0ccffb40e4822c3e2a",
+      "executed_sql": "-- 日期范围只表示文件内记录覆盖，不代表已知完整随访截止。\n-- 所有可见签约均纳入覆盖检查，包括日期冲突记录。\n\nSELECT\n    COUNT(*) AS lead_count,\n    SUM(has_observed_won) AS observed_won_count,\n    SUM(1 - has_observed_won) AS unmatched_won_count,\n    MIN(first_contact_date) AS first_contact_min,\n    MAX(first_contact_date) AS first_contact_max,\n    MIN(won_date) AS won_min,\n    MAX(won_date) AS won_max,\n    SUM(date_order_issue) AS date_issue_count,\n    SUM(CASE\n        WHEN DATE(won_date) > (SELECT MAX(first_contact_date) FROM mql)\n        THEN 1 ELSE 0\n    END) AS won_after_last_contact_date_count\nFROM lead_overview;",
+      "row_count": 1,
+      "result_sha256": "6e19db137ec57f416e1d998404608d3b2bac48d8f93ec8e05a8eae1a93072abf"
+    },
+    "won_months": {
+      "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\06_won_months.sql",
+      "sha256": "782e6b14268c817977b72fd661836e75db0e4fb267bf6158ef630a08592fb5bd",
+      "executed_sql": "-- 这次按“签约发生月份”统计，含日期冲突原记录。\n-- 与04按“首次联系月份”分组的指标，含义不同。\n\nSELECT\n    SUBSTR(won_date, 1, 7) AS won_month,\n    COUNT(*) AS observed_won_count\nFROM lead_overview\nWHERE has_observed_won = 1\nGROUP BY SUBSTR(won_date, 1, 7)\nORDER BY won_month ASC;",
+      "row_count": 12,
+      "result_sha256": "a8c43898ed2a723a0182d558e50ae7f597aa9598f2939148547dd32f64facdbe"
+    },
+    "durations": {
+      "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\06_won_calendar_days.sql",
+      "sha256": "edbfaffc06270508f8a17ebbe6152378163d45d69ac72e7a439bb42d752847f2",
+      "executed_sql": "-- 仅获取文件内匹配到签约的线索，不给未签约者补0天。\n-- DATE去掉时分秒；差值是日历天数，不是精确24小时耗时。\n-- 原记录全部保留，负值或无法解析日期的记录单独标记。\n\nSELECT\n    mql_id,\n    origin_group AS channel,\n    first_contact_date,\n    won_date,\n    CAST(JULIANDAY(DATE(won_date)) - JULIANDAY(DATE(first_contact_date)) AS INTEGER) AS calendar_days_to_won,\n    CASE\n        WHEN DATE(won_date) IS NULL OR DATE(first_contact_date) IS NULL THEN 'invalid_date'\n        WHEN DATE(won_date) < DATE(first_contact_date) THEN 'negative_interval'\n        ELSE 'valid_duration'\n    END AS duration_status\nFROM lead_overview\nWHERE has_observed_won = 1\nORDER BY mql_id;",
+      "row_count": 842,
+      "result_sha256": "c9b76bac122282c12d1803c1df66aa5d8761e739768825411bac037eff3a0051"
+    }
+  }
+}

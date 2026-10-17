@@ -1,0 +1,230 @@
+{
+  "stage": "01_source_and_structure_audit",
+  "generated_at_utc": "2026-10-17T02:16:23.331595+00:00",
+  "source": {
+    "dataset": "Marketing Funnel by Olist",
+    "dataset_url": "https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist",
+    "publisher_context": "https://github.com/olist/work-at-olist-marketing",
+    "download_url": "https://www.kaggle.com/api/v1/datasets/download/olistbr/marketing-funnel-olist",
+    "metadata_url": "https://www.kaggle.com/api/v1/datasets/view/olistbr/marketing-funnel-olist",
+    "downloaded_at_utc": "2026-10-16T13:40:28.385940+00:00",
+    "version": 2,
+    "last_updated": "2018-11-16T14:00:20.677Z",
+    "license_as_reported_by_publisher": "CC BY-NC-SA 4.0",
+    "archive_sha256": "d476efe8d16ab267ce10535859ed3dd2d6e186bbb50c9d405a1e7bc05c200171",
+    "archive_bytes": 284562,
+    "files": {
+      "olist_closed_deals_dataset.csv": {
+        "bytes": 171352,
+        "sha256": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+      },
+      "olist_marketing_qualified_leads_dataset.csv": {
+        "bytes": 703836,
+        "sha256": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573"
+      }
+    },
+    "preservation": "Original ZIP and exact decompressed CSV bytes; no edits or row removal.",
+    "integrity_scope": "ZIP CRC checked and local SHA256 recorded; no independent publisher checksum was provided."
+  },
+  "tables": {
+    "olist_marketing_qualified_leads_dataset.csv": {
+      "rows": 8000,
+      "columns": [
+        "mql_id",
+        "first_contact_date",
+        "landing_page_id",
+        "origin"
+      ],
+      "distinct_nonempty_mql_ids": 8000,
+      "empty_mql_id_rows": 0,
+      "duplicate_mql_id_values": 0,
+      "extra_rows_from_duplicate_mql_ids": 0,
+      "exact_duplicate_extra_rows": 0,
+      "field_profile": {
+        "mql_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 8000
+        },
+        "first_contact_date": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 336
+        },
+        "landing_page_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 495
+        },
+        "origin": {
+          "empty_rows": 60,
+          "empty_pct": 0.75,
+          "distinct_nonempty_values": 10
+        }
+      }
+    },
+    "olist_closed_deals_dataset.csv": {
+      "rows": 842,
+      "columns": [
+        "mql_id",
+        "seller_id",
+        "sdr_id",
+        "sr_id",
+        "won_date",
+        "business_segment",
+        "lead_type",
+        "lead_behaviour_profile",
+        "has_company",
+        "has_gtin",
+        "average_stock",
+        "business_type",
+        "declared_product_catalog_size",
+        "declared_monthly_revenue"
+      ],
+      "distinct_nonempty_mql_ids": 842,
+      "empty_mql_id_rows": 0,
+      "duplicate_mql_id_values": 0,
+      "extra_rows_from_duplicate_mql_ids": 0,
+      "exact_duplicate_extra_rows": 0,
+      "field_profile": {
+        "mql_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 842
+        },
+        "seller_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 842
+        },
+        "sdr_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 32
+        },
+        "sr_id": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 22
+        },
+        "won_date": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 824
+        },
+        "business_segment": {
+          "empty_rows": 1,
+          "empty_pct": 0.119,
+          "distinct_nonempty_values": 33
+        },
+        "lead_type": {
+          "empty_rows": 6,
+          "empty_pct": 0.713,
+          "distinct_nonempty_values": 8
+        },
+        "lead_behaviour_profile": {
+          "empty_rows": 177,
+          "empty_pct": 21.021,
+          "distinct_nonempty_values": 9
+        },
+        "has_company": {
+          "empty_rows": 779,
+          "empty_pct": 92.518,
+          "distinct_nonempty_values": 2
+        },
+        "has_gtin": {
+          "empty_rows": 778,
+          "empty_pct": 92.399,
+          "distinct_nonempty_values": 2
+        },
+        "average_stock": {
+          "empty_rows": 776,
+          "empty_pct": 92.162,
+          "distinct_nonempty_values": 6
+        },
+        "business_type": {
+          "empty_rows": 10,
+          "empty_pct": 1.188,
+          "distinct_nonempty_values": 3
+        },
+        "declared_product_catalog_size": {
+          "empty_rows": 773,
+          "empty_pct": 91.805,
+          "distinct_nonempty_values": 33
+        },
+        "declared_monthly_revenue": {
+          "empty_rows": 0,
+          "empty_pct": 0.0,
+          "distinct_nonempty_values": 27
+        }
+      }
+    }
+  },
+  "dates": {
+    "first_contact_date": {
+      "field": "first_contact_date",
+      "parsed_rows": 8000,
+      "missing_rows": 0,
+      "invalid_rows": 0,
+      "invalid_csv_row_numbers_first_10": [],
+      "min": "2017-06-14 00:00:00",
+      "max": "2018-05-31 00:00:00"
+    },
+    "won_date": {
+      "field": "won_date",
+      "parsed_rows": 842,
+      "missing_rows": 0,
+      "invalid_rows": 0,
+      "invalid_csv_row_numbers_first_10": [],
+      "min": "2017-12-05 02:00:00",
+      "max": "2018-11-14 18:04:19"
+    }
+  },
+  "join": {
+    "mql_key_is_nonempty_and_unique_in_both_tables": true,
+    "matched_distinct_mql_ids": 842,
+    "unmatched_lead_ids": 7158,
+    "deal_ids_missing_from_leads": 0,
+    "distinct_nonempty_seller_ids_in_deals": 842,
+    "duplicate_seller_id_values_in_deals": 0,
+    "grain": "MQL线索记录；不把mql_id自动解释为唯一自然人或唯一商家。",
+    "unmatched_meaning": "未匹配到签约记录；不等于确定失单。"
+  },
+  "date_order_check": {
+    "checked_matched_rows": 842,
+    "won_before_contact_calendar_date_rows": 1,
+    "anomalies_first_10": [
+      {
+        "mql_id": "b91cf8812365f50ff4bda4bcd6206b05",
+        "first_contact_date": "2018-03-08",
+        "won_date": "2018-03-06 19:38:55",
+        "handling": "仅标记，原始记录保留；后续时长分析单独处理。"
+      }
+    ]
+  },
+  "origin_lead_counts": {
+    "organic_search": 2296,
+    "paid_search": 1586,
+    "social": 1350,
+    "unknown": 1099,
+    "direct_traffic": 499,
+    "email": 493,
+    "referral": 284,
+    "other": 150,
+    "display": 118,
+    "other_publicities": 65,
+    "(未记录)": 60
+  },
+  "declared_monthly_revenue_zero_rows": 797,
+  "checks": {
+    "csv_hashes_match_download_manifest": true,
+    "join_keys_nonempty_and_unique": true,
+    "all_won_records_have_lead_match": true,
+    "all_dates_present_and_parseable": true,
+    "no_won_before_contact_calendar_date": false,
+    "raw_csv_unchanged": true
+  },
+  "all_structure_checks_passed": false,
+  "observation_cutoff": "发布说明未给出每条线索的完整随访截止；最大won_date不是已知完整观察截止。",
+  "scope": "仅结构与覆盖审计；未选择渠道赢家、未计算ROI或归因贡献。"
+}

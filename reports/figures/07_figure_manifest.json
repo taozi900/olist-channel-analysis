@@ -1,0 +1,54 @@
+{
+  "version": "olist_figures_v1",
+  "generated_at_utc": "2026-10-17T03:50:58.459295+00:00",
+  "matplotlib_version": "3.10.8",
+  "font_family": "Microsoft YaHei",
+  "input_sha256": {
+    "reports/04_channel_metrics.json": "4c5790679107193723f8b8adcd33caadf70a5f656d5a3544c84a75887b5ec874",
+    "reports/05_month_standardization.json": "ff003a369c095776c027108681f5ed75e37327e80d0a62c91b69b41bade0a7db",
+    "reports/06_time_diagnostics.json": "5b980282bfe97713b0fe865ffad60edd201df1a0c1fd8520ffb5998067872789"
+  },
+  "source_sha256": {
+    "olist_marketing_qualified_leads_dataset.csv": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573",
+    "olist_closed_deals_dataset.csv": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+  },
+  "source_reports_unchanged": true,
+  "outputs": {
+    "reports/figures/07_01_channel_volume_rate.png": {
+      "bytes": 291772,
+      "sha256": "4a12ac8e2bbf369d9c64eeb872e9314e9f966d2950c5263d648ae74f9a9a1008"
+    },
+    "reports/figures/07_01_channel_volume_rate.svg": {
+      "bytes": 25825,
+      "sha256": "48cc8a291299ab98ad9a87f004e5e743d9902fccddbde297013deb33e55acde1"
+    },
+    "reports/figures/07_02_month_standardization.png": {
+      "bytes": 194152,
+      "sha256": "81c4f3a81917c397c12379d4edfc1f8b8264d2c11b1076a65e3f9f0fdc3ca93c"
+    },
+    "reports/figures/07_02_month_standardization.svg": {
+      "bytes": 12983,
+      "sha256": "d9f6ca7fd3f1e0441290fdfa11a929b3d7a7feda215457034c260c4eac0e25f6"
+    },
+    "reports/figures/07_03_monthly_comparison.png": {
+      "bytes": 257121,
+      "sha256": "28c129fe63aa550261c2b215d2e99b7c82780bed5ed2c9b3aa93e33969ee2b25"
+    },
+    "reports/figures/07_03_monthly_comparison.svg": {
+      "bytes": 32527,
+      "sha256": "feade609ad77ccde136856a9e517a2811dcb401ea1b4b527f2e36cc30baeaa02"
+    },
+    "reports/figures/07_04_observed_won_duration.png": {
+      "bytes": 240343,
+      "sha256": "2ad1135c9147d026901e08b6e291c43e4160de819e6edca75e78010761da2180"
+    },
+    "reports/figures/07_04_observed_won_duration.svg": {
+      "bytes": 15019,
+      "sha256": "fbf29808a9c7cedf3658ccd95fd7b6ae05167651ce3f247136ecd7607e75bc57"
+    },
+    "reports/figures/07_图表阅读与复现.md": {
+      "bytes": 2367,
+      "sha256": "c7d26008569a76a87b0eaf62ea1469261e7338e009ee73413741fbb664a2e7c3"
+    }
+  }
+}

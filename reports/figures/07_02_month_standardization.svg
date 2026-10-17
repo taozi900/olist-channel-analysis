@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1008pt" height="547.2pt" viewBox="0 0 1008 547.2" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Olist local plotting script</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 547.2 
+L 1008 547.2 
+L 1008 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 171.36 377.568 
+L 630 377.568 
+L 630 158.688 
+L 171.36 158.688 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 171.36 377.568 
+L 171.36 158.688 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="171.36" y="393.361125" transform="rotate(-0 171.36 393.361125)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 286.02 377.568 
+L 286.02 158.688 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="286.02" y="393.361125" transform="rotate(-0 286.02 393.361125)">4</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 400.68 377.568 
+L 400.68 158.688 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="400.68" y="393.361125" transform="rotate(-0 400.68 393.361125)">8</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 515.34 377.568 
+L 515.34 158.688 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="515.34" y="393.361125" transform="rotate(-0 515.34 393.361125)">12</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 630 377.568 
+L 630 158.688 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="630" y="393.361125" transform="rotate(-0 630 393.361125)">16</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="400.68" y="408.888781" transform="rotate(-0 400.68 408.888781)">记录内可见签约占比（%）</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_11"/>
+     <g id="text_7">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="164.36" y="199.564563" transform="rotate(-0 164.36 199.564563)">自然搜索</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_12"/>
+     <g id="text_8">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="164.36" y="272.524563" transform="rotate(-0 164.36 272.524563)">付费搜索</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_13"/>
+     <g id="text_9">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="164.36" y="345.484562" transform="rotate(-0 164.36 345.484562)">社交来源</text>
+     </g>
+    </g>
+   </g>
+   <g id="line2d_14">
+    <path d="M 509.69689 195.168 
+L 511.039281 195.168 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #8c9da5; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_15">
+    <path d="M 523.798525 268.128 
+L 525.987219 268.128 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #8c9da5; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_16">
+    <path d="M 330.61 341.088 
+L 339.566125 341.088 
+" clip-path="url(#pb042aa47a9)" style="fill: none; stroke: #8c9da5; stroke-width: 2; stroke-linecap: square"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 171.36 377.568 
+L 630 377.568 
+" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="PathCollection_1">
+    <defs>
+     <path id="m7bfb615039" d="M 0 4.527693 
+C 1.200758 4.527693 2.352498 4.050626 3.201562 3.201562 
+C 4.050626 2.352498 4.527693 1.200758 4.527693 0 
+C 4.527693 -1.200758 4.050626 -2.352498 3.201562 -3.201562 
+C 2.352498 -4.050626 1.200758 -4.527693 0 -4.527693 
+C -1.200758 -4.527693 -2.352498 -4.050626 -3.201562 -3.201562 
+C -4.050626 -2.352498 -4.527693 -1.200758 -4.527693 0 
+C -4.527693 1.200758 -4.050626 2.352498 -3.201562 3.201562 
+C -2.352498 4.050626 -1.200758 4.527693 0 4.527693 
+z
+" style="stroke: #7b8f99; stroke-width: 1.6"/>
+    </defs>
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#m7bfb615039" x="509.69689" y="195.168" style="fill: #ffffff; stroke: #7b8f99; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_2">
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#m7bfb615039" x="523.798525" y="268.128" style="fill: #ffffff; stroke: #7b8f99; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_3">
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#m7bfb615039" x="330.61" y="341.088" style="fill: #ffffff; stroke: #7b8f99; stroke-width: 1.6"/>
+    </g>
+   </g>
+   <g id="PathCollection_4">
+    <defs>
+     <path id="m00100b7bc6" d="M 0 5.147815 
+L 5.147815 0 
+L 0 -5.147815 
+L -5.147815 0 
+z
+" style="stroke: #168578"/>
+    </defs>
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#m00100b7bc6" x="511.039281" y="195.168" style="fill: #168578; stroke: #168578"/>
+    </g>
+   </g>
+   <g id="PathCollection_5">
+    <defs>
+     <path id="mec76d9b2ea" d="M 0 5.147815 
+L 5.147815 0 
+L 0 -5.147815 
+L -5.147815 0 
+z
+" style="stroke: #426fa3"/>
+    </defs>
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#mec76d9b2ea" x="525.987219" y="268.128" style="fill: #426fa3; stroke: #426fa3"/>
+    </g>
+   </g>
+   <g id="PathCollection_6">
+    <defs>
+     <path id="m1c27d8cf40" d="M 0 5.147815 
+L 5.147815 0 
+L 0 -5.147815 
+L -5.147815 0 
+z
+" style="stroke: #c17c3a"/>
+    </defs>
+    <g clip-path="url(#pb042aa47a9)">
+     <use xlink:href="#m1c27d8cf40" x="339.566125" y="341.088" style="fill: #c17c3a; stroke: #c17c3a"/>
+    </g>
+   </g>
+  </g>
+  <g id="patch_4">
+   <path d="M 55.44 473.328 
+L 962.64 473.328 
+L 962.64 421.344 
+L 55.44 421.344 
+z
+" style="fill: #eff4f6"/>
+  </g>
+  <g id="text_10">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="55.44" y="44.146875" transform="rotate(-0 55.44 44.146875)">统一月份构成：原始占比与标准化占比</text>
+  </g>
+  <g id="text_11">
+   <text style="font-size: 10.8px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="66.563437" transform="rotate(-0 55.44 66.563437)">三来源共同的11个月  |  月份权重来自合并的5,232条线索  |  三来源共享同一套非等月权重</text>
+  </g>
+  <g id="text_12">
+   <text style="font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="740.88" y="199.298859" transform="rotate(-0 740.88 199.298859)">11.80%</text>
+  </g>
+  <g id="text_13">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #168578" x="882" y="199.298859" transform="rotate(-0 882 199.298859)">11.85%</text>
+  </g>
+  <g id="text_14">
+   <text style="font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="740.88" y="272.258859" transform="rotate(-0 740.88 272.258859)">12.30%</text>
+  </g>
+  <g id="text_15">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #426fa3" x="882" y="272.258859" transform="rotate(-0 882 272.258859)">12.37%</text>
+  </g>
+  <g id="text_16">
+   <text style="font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="740.88" y="345.218859" transform="rotate(-0 740.88 345.218859)">5.56%</text>
+  </g>
+  <g id="text_17">
+   <text style="font-weight: 700; font-size: 15px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #c17c3a" x="882" y="345.218859" transform="rotate(-0 882 345.218859)">5.87%</text>
+  </g>
+  <g id="text_18">
+   <text style="font-size: 12px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="740.88" y="131.328" transform="rotate(-0 740.88 131.328)">原始汇总</text>
+  </g>
+  <g id="text_19">
+   <text style="font-size: 12px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="882" y="131.328" transform="rotate(-0 882 131.328)">月份标准化</text>
+  </g>
+  <g id="text_20">
+   <text style="font-weight: 700; font-size: 12px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="75.6" y="443.800687" transform="rotate(-0 75.6 443.800687)">付费搜索 − 自然搜索：标准化后约 +0.52 个百分点</text>
+  </g>
+  <g id="text_21">
+   <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="75.6" y="463.634002" transform="rotate(-0 75.6 463.634002)">仅为描述性差值；未进行显著性检验，不能据此确认渠道优劣。</text>
+  </g>
+  <g id="text_22">
+   <text style="font-size: 9.2px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="506.40065" transform="rotate(-0 55.44 506.40065)">标准化只改变汇总权重，没有新增线索或签约；同一月份在三个来源中使用相同权重。</text>
+  </g>
+  <g id="text_23">
+   <text style="font-size: 9.2px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="520.08065" transform="rotate(-0 55.44 520.08065)">来源：本地05方案；共同月份按分母选择。月份构成调整不等于统一随访，也不等于因果识别。</text>
+  </g>
+  <g id="legend_1">
+   <g id="line2d_17">
+    <defs>
+     <path id="m72027a8668" d="M 0 3 
+C 0.795609 3 1.55874 2.683901 2.12132 2.12132 
+C 2.683901 1.55874 3 0.795609 3 0 
+C 3 -0.795609 2.683901 -1.55874 2.12132 -2.12132 
+C 1.55874 -2.683901 0.795609 -3 0 -3 
+C -0.795609 -3 -1.55874 -2.683901 -2.12132 -2.12132 
+C -2.683901 -1.55874 -3 -0.795609 -3 0 
+C -3 0.795609 -2.683901 1.55874 -2.12132 2.12132 
+C -1.55874 2.683901 -0.795609 3 0 3 
+z
+" style="stroke: #7b8f99"/>
+    </defs>
+    <g>
+     <use xlink:href="#m72027a8668" x="186.27" y="104.456438" style="fill: #ffffff; stroke: #7b8f99"/>
+    </g>
+   </g>
+   <g id="text_24">
+    <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="205.17" y="108.131438" transform="rotate(-0 205.17 108.131438)">原始汇总</text>
+   </g>
+   <g id="line2d_18">
+    <defs>
+     <path id="m7d8e8828ac" d="M 0 4.242641 
+L 4.242641 0 
+L 0 -4.242641 
+L -4.242641 0 
+z
+" style="stroke: #193641; stroke-linejoin: miter"/>
+    </defs>
+    <g>
+     <use xlink:href="#m7d8e8828ac" x="278.67" y="104.456438" style="fill: #193641; stroke: #193641; stroke-linejoin: miter"/>
+    </g>
+   </g>
+   <g id="text_25">
+    <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="297.57" y="108.131438" transform="rotate(-0 297.57 108.131438)">相同月份权重</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pb042aa47a9">
+   <rect x="171.36" y="158.688" width="458.64" height="218.88"/>
+  </clipPath>
+ </defs>
+</svg>

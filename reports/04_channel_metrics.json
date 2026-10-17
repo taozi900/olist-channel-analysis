@@ -1,0 +1,1239 @@
+{
+  "stage": "04_observed_channel_and_month_metrics",
+  "generated_at_utc": "2026-10-17T02:53:58.448933+00:00",
+  "metric_definition": "发布文件内匹配到签约记录的MQL数 / 该组全部MQL记录数",
+  "observation_scope": "可见记录快照；完整随访截止未知，未统一观察时长。",
+  "database_sha256": "58ee16bf244689d6c23d7e7ec385bbc74fd01eca7e1d1ab9edc93c22c2e20284",
+  "source_sha256": {
+    "olist_marketing_qualified_leads_dataset.csv": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573",
+    "olist_closed_deals_dataset.csv": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+  },
+  "database_and_raw_csv_unchanged": true,
+  "sql_counts_match_independent_raw_counts": true,
+  "totals": {
+    "lead_count": 8000,
+    "observed_won_count": 842,
+    "unmatched_won_count": 7158,
+    "date_issue_count": 1
+  },
+  "queries": {
+    "channels": {
+      "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\04_channel_metrics.sql",
+      "sql_sha256": "2c42d821d9bf31b783967f5e34abdad810fa94f04365f0f519928921bec26e77",
+      "executed_sql": "-- 第四步：各来源在发布文件内的可见签约情况。\n-- 口径：匹配到签约记录的MQL数 / 该来源全部MQL记录数。\n-- 这是记录内可见签约占比，不是最终签约率，也不是渠道因果效果。\n-- 保留空来源、unknown、未匹配签约及日期冲突记录。\n\nSELECT\n    origin_group AS channel,\n    COUNT(*) AS lead_count,\n    SUM(has_observed_won) AS observed_won_count,\n    SUM(1 - has_observed_won) AS unmatched_won_count,\n    100.0 * SUM(has_observed_won) / COUNT(*) AS observed_won_pct,\n    SUM(date_order_issue) AS date_issue_count\nFROM lead_overview\nGROUP BY origin_group\nORDER BY lead_count DESC, channel ASC;",
+      "rows": [
+        {
+          "channel": "organic_search",
+          "lead_count": 2296,
+          "observed_won_count": 271,
+          "unmatched_won_count": 2025,
+          "observed_won_pct": 11.803135888501743,
+          "date_issue_count": 1
+        },
+        {
+          "channel": "paid_search",
+          "lead_count": 1586,
+          "observed_won_count": 195,
+          "unmatched_won_count": 1391,
+          "observed_won_pct": 12.295081967213115,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "social",
+          "lead_count": 1350,
+          "observed_won_count": 75,
+          "unmatched_won_count": 1275,
+          "observed_won_pct": 5.555555555555555,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "unknown",
+          "lead_count": 1099,
+          "observed_won_count": 179,
+          "unmatched_won_count": 920,
+          "observed_won_pct": 16.287534121929028,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "direct_traffic",
+          "lead_count": 499,
+          "observed_won_count": 56,
+          "unmatched_won_count": 443,
+          "observed_won_pct": 11.22244488977956,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "email",
+          "lead_count": 493,
+          "observed_won_count": 15,
+          "unmatched_won_count": 478,
+          "observed_won_pct": 3.0425963488843815,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "referral",
+          "lead_count": 284,
+          "observed_won_count": 24,
+          "unmatched_won_count": 260,
+          "observed_won_pct": 8.450704225352112,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "other",
+          "lead_count": 150,
+          "observed_won_count": 4,
+          "unmatched_won_count": 146,
+          "observed_won_pct": 2.6666666666666665,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "display",
+          "lead_count": 118,
+          "observed_won_count": 6,
+          "unmatched_won_count": 112,
+          "observed_won_pct": 5.084745762711864,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "other_publicities",
+          "lead_count": 65,
+          "observed_won_count": 3,
+          "unmatched_won_count": 62,
+          "observed_won_pct": 4.615384615384615,
+          "date_issue_count": 0
+        },
+        {
+          "channel": "(未记录)",
+          "lead_count": 60,
+          "observed_won_count": 14,
+          "unmatched_won_count": 46,
+          "observed_won_pct": 23.333333333333332,
+          "date_issue_count": 0
+        }
+      ]
+    },
+    "channel_months": {
+      "sql_file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\04_channel_month_metrics.sql",
+      "sql_sha256": "e91a881f174b41cde763dd23249536182448d9ba3d5cca2ce626f01a53b8e0a0",
+      "executed_sql": "-- 按首次联系月份与来源同时分组，便于后续查看月份构成差异。\n-- 此表只包含有线索的组合；没有线索的组合不补成0%签约占比。\n-- 签约记录可以晚于首次联系月份；这里不是统计每月发生的签约数。\n\nSELECT\n    first_contact_month AS contact_month,\n    origin_group AS channel,\n    COUNT(*) AS lead_count,\n    SUM(has_observed_won) AS observed_won_count,\n    SUM(1 - has_observed_won) AS unmatched_won_count,\n    100.0 * SUM(has_observed_won) / COUNT(*) AS observed_won_pct,\n    SUM(date_order_issue) AS date_issue_count\nFROM lead_overview\nGROUP BY first_contact_month, origin_group\nORDER BY contact_month ASC, lead_count DESC, channel ASC;",
+      "rows": [
+        {
+          "contact_month": "2017-06",
+          "channel": "(未记录)",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-06",
+          "channel": "display",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-06",
+          "channel": "email",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-06",
+          "channel": "unknown",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "paid_search",
+          "lead_count": 56,
+          "observed_won_count": 0,
+          "unmatched_won_count": 56,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "organic_search",
+          "lead_count": 54,
+          "observed_won_count": 0,
+          "unmatched_won_count": 54,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "unknown",
+          "lead_count": 35,
+          "observed_won_count": 1,
+          "unmatched_won_count": 34,
+          "observed_won_pct": 2.857142857142857,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "display",
+          "lead_count": 19,
+          "observed_won_count": 0,
+          "unmatched_won_count": 19,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "email",
+          "lead_count": 19,
+          "observed_won_count": 0,
+          "unmatched_won_count": 19,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "direct_traffic",
+          "lead_count": 16,
+          "observed_won_count": 0,
+          "unmatched_won_count": 16,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "other",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "unmatched_won_count": 12,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "social",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "unmatched_won_count": 12,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "referral",
+          "lead_count": 8,
+          "observed_won_count": 0,
+          "unmatched_won_count": 8,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "(未记录)",
+          "lead_count": 5,
+          "observed_won_count": 1,
+          "unmatched_won_count": 4,
+          "observed_won_pct": 20.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "other_publicities",
+          "lead_count": 3,
+          "observed_won_count": 0,
+          "unmatched_won_count": 3,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "organic_search",
+          "lead_count": 122,
+          "observed_won_count": 2,
+          "unmatched_won_count": 120,
+          "observed_won_pct": 1.639344262295082,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "paid_search",
+          "lead_count": 79,
+          "observed_won_count": 3,
+          "unmatched_won_count": 76,
+          "observed_won_pct": 3.7974683544303796,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "unknown",
+          "lead_count": 70,
+          "observed_won_count": 1,
+          "unmatched_won_count": 69,
+          "observed_won_pct": 1.4285714285714286,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "social",
+          "lead_count": 45,
+          "observed_won_count": 3,
+          "unmatched_won_count": 42,
+          "observed_won_pct": 6.666666666666667,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "email",
+          "lead_count": 24,
+          "observed_won_count": 0,
+          "unmatched_won_count": 24,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "direct_traffic",
+          "lead_count": 22,
+          "observed_won_count": 0,
+          "unmatched_won_count": 22,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "referral",
+          "lead_count": 16,
+          "observed_won_count": 0,
+          "unmatched_won_count": 16,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "other",
+          "lead_count": 3,
+          "observed_won_count": 0,
+          "unmatched_won_count": 3,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "display",
+          "lead_count": 2,
+          "observed_won_count": 0,
+          "unmatched_won_count": 2,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "other_publicities",
+          "lead_count": 2,
+          "observed_won_count": 0,
+          "unmatched_won_count": 2,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "(未记录)",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "organic_search",
+          "lead_count": 78,
+          "observed_won_count": 5,
+          "unmatched_won_count": 73,
+          "observed_won_pct": 6.410256410256411,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "paid_search",
+          "lead_count": 64,
+          "observed_won_count": 2,
+          "unmatched_won_count": 62,
+          "observed_won_pct": 3.125,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "social",
+          "lead_count": 56,
+          "observed_won_count": 0,
+          "unmatched_won_count": 56,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "unknown",
+          "lead_count": 39,
+          "observed_won_count": 0,
+          "unmatched_won_count": 39,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "email",
+          "lead_count": 23,
+          "observed_won_count": 0,
+          "unmatched_won_count": 23,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "direct_traffic",
+          "lead_count": 22,
+          "observed_won_count": 0,
+          "unmatched_won_count": 22,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "referral",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "unmatched_won_count": 12,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "other",
+          "lead_count": 9,
+          "observed_won_count": 0,
+          "unmatched_won_count": 9,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "display",
+          "lead_count": 5,
+          "observed_won_count": 0,
+          "unmatched_won_count": 5,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "other_publicities",
+          "lead_count": 4,
+          "observed_won_count": 0,
+          "unmatched_won_count": 4,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "organic_search",
+          "lead_count": 125,
+          "observed_won_count": 1,
+          "unmatched_won_count": 124,
+          "observed_won_pct": 0.8,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "paid_search",
+          "lead_count": 100,
+          "observed_won_count": 7,
+          "unmatched_won_count": 93,
+          "observed_won_pct": 7.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "unknown",
+          "lead_count": 53,
+          "observed_won_count": 3,
+          "unmatched_won_count": 50,
+          "observed_won_pct": 5.660377358490566,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "social",
+          "lead_count": 52,
+          "observed_won_count": 2,
+          "unmatched_won_count": 50,
+          "observed_won_pct": 3.8461538461538463,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "email",
+          "lead_count": 30,
+          "observed_won_count": 1,
+          "unmatched_won_count": 29,
+          "observed_won_pct": 3.3333333333333335,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "direct_traffic",
+          "lead_count": 23,
+          "observed_won_count": 0,
+          "unmatched_won_count": 23,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "other_publicities",
+          "lead_count": 11,
+          "observed_won_count": 0,
+          "unmatched_won_count": 11,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "other",
+          "lead_count": 8,
+          "observed_won_count": 0,
+          "unmatched_won_count": 8,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "referral",
+          "lead_count": 8,
+          "observed_won_count": 0,
+          "unmatched_won_count": 8,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "display",
+          "lead_count": 5,
+          "observed_won_count": 0,
+          "unmatched_won_count": 5,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "(未记录)",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "organic_search",
+          "lead_count": 121,
+          "observed_won_count": 4,
+          "unmatched_won_count": 117,
+          "observed_won_pct": 3.3057851239669422,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "social",
+          "lead_count": 95,
+          "observed_won_count": 4,
+          "unmatched_won_count": 91,
+          "observed_won_pct": 4.2105263157894735,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "paid_search",
+          "lead_count": 70,
+          "observed_won_count": 6,
+          "unmatched_won_count": 64,
+          "observed_won_pct": 8.571428571428571,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "unknown",
+          "lead_count": 63,
+          "observed_won_count": 4,
+          "unmatched_won_count": 59,
+          "observed_won_pct": 6.349206349206349,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "email",
+          "lead_count": 37,
+          "observed_won_count": 0,
+          "unmatched_won_count": 37,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "direct_traffic",
+          "lead_count": 26,
+          "observed_won_count": 0,
+          "unmatched_won_count": 26,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "referral",
+          "lead_count": 20,
+          "observed_won_count": 0,
+          "unmatched_won_count": 20,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "display",
+          "lead_count": 6,
+          "observed_won_count": 0,
+          "unmatched_won_count": 6,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "other",
+          "lead_count": 3,
+          "observed_won_count": 0,
+          "unmatched_won_count": 3,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "other_publicities",
+          "lead_count": 3,
+          "observed_won_count": 0,
+          "unmatched_won_count": 3,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "(未记录)",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "organic_search",
+          "lead_count": 60,
+          "observed_won_count": 4,
+          "unmatched_won_count": 56,
+          "observed_won_pct": 6.666666666666667,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "social",
+          "lead_count": 39,
+          "observed_won_count": 0,
+          "unmatched_won_count": 39,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "paid_search",
+          "lead_count": 35,
+          "observed_won_count": 2,
+          "unmatched_won_count": 33,
+          "observed_won_pct": 5.714285714285714,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "unknown",
+          "lead_count": 25,
+          "observed_won_count": 2,
+          "unmatched_won_count": 23,
+          "observed_won_pct": 8.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "email",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "unmatched_won_count": 12,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "direct_traffic",
+          "lead_count": 10,
+          "observed_won_count": 2,
+          "unmatched_won_count": 8,
+          "observed_won_pct": 20.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "referral",
+          "lead_count": 9,
+          "observed_won_count": 0,
+          "unmatched_won_count": 9,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "display",
+          "lead_count": 5,
+          "observed_won_count": 1,
+          "unmatched_won_count": 4,
+          "observed_won_pct": 20.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "(未记录)",
+          "lead_count": 3,
+          "observed_won_count": 0,
+          "unmatched_won_count": 3,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "other",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "other_publicities",
+          "lead_count": 1,
+          "observed_won_count": 0,
+          "unmatched_won_count": 1,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "organic_search",
+          "lead_count": 412,
+          "observed_won_count": 63,
+          "unmatched_won_count": 349,
+          "observed_won_pct": 15.29126213592233,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "paid_search",
+          "lead_count": 170,
+          "observed_won_count": 20,
+          "unmatched_won_count": 150,
+          "observed_won_pct": 11.764705882352942,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "social",
+          "lead_count": 162,
+          "observed_won_count": 8,
+          "unmatched_won_count": 154,
+          "observed_won_pct": 4.938271604938271,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "unknown",
+          "lead_count": 151,
+          "observed_won_count": 33,
+          "unmatched_won_count": 118,
+          "observed_won_pct": 21.85430463576159,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "direct_traffic",
+          "lead_count": 82,
+          "observed_won_count": 18,
+          "unmatched_won_count": 64,
+          "observed_won_pct": 21.951219512195124,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "email",
+          "lead_count": 61,
+          "observed_won_count": 1,
+          "unmatched_won_count": 60,
+          "observed_won_pct": 1.639344262295082,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "referral",
+          "lead_count": 41,
+          "observed_won_count": 3,
+          "unmatched_won_count": 38,
+          "observed_won_pct": 7.317073170731708,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "other",
+          "lead_count": 39,
+          "observed_won_count": 1,
+          "unmatched_won_count": 38,
+          "observed_won_pct": 2.5641025641025643,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "display",
+          "lead_count": 11,
+          "observed_won_count": 0,
+          "unmatched_won_count": 11,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "other_publicities",
+          "lead_count": 7,
+          "observed_won_count": 2,
+          "unmatched_won_count": 5,
+          "observed_won_pct": 28.571428571428573,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "(未记录)",
+          "lead_count": 5,
+          "observed_won_count": 3,
+          "unmatched_won_count": 2,
+          "observed_won_pct": 60.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "organic_search",
+          "lead_count": 291,
+          "observed_won_count": 39,
+          "unmatched_won_count": 252,
+          "observed_won_pct": 13.402061855670103,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "paid_search",
+          "lead_count": 212,
+          "observed_won_count": 43,
+          "unmatched_won_count": 169,
+          "observed_won_pct": 20.28301886792453,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "social",
+          "lead_count": 156,
+          "observed_won_count": 15,
+          "unmatched_won_count": 141,
+          "observed_won_pct": 9.615384615384615,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "unknown",
+          "lead_count": 156,
+          "observed_won_count": 34,
+          "unmatched_won_count": 122,
+          "observed_won_pct": 21.794871794871796,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "email",
+          "lead_count": 68,
+          "observed_won_count": 4,
+          "unmatched_won_count": 64,
+          "observed_won_pct": 5.882352941176471,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "direct_traffic",
+          "lead_count": 65,
+          "observed_won_count": 9,
+          "unmatched_won_count": 56,
+          "observed_won_pct": 13.846153846153847,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "referral",
+          "lead_count": 34,
+          "observed_won_count": 3,
+          "unmatched_won_count": 31,
+          "observed_won_pct": 8.823529411764707,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "display",
+          "lead_count": 18,
+          "observed_won_count": 1,
+          "unmatched_won_count": 17,
+          "observed_won_pct": 5.555555555555555,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "other",
+          "lead_count": 16,
+          "observed_won_count": 0,
+          "unmatched_won_count": 16,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "(未记录)",
+          "lead_count": 7,
+          "observed_won_count": 1,
+          "unmatched_won_count": 6,
+          "observed_won_pct": 14.285714285714286,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "other_publicities",
+          "lead_count": 5,
+          "observed_won_count": 0,
+          "unmatched_won_count": 5,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "organic_search",
+          "lead_count": 340,
+          "observed_won_count": 52,
+          "unmatched_won_count": 288,
+          "observed_won_pct": 15.294117647058824,
+          "date_issue_count": 1
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "paid_search",
+          "lead_count": 262,
+          "observed_won_count": 39,
+          "unmatched_won_count": 223,
+          "observed_won_pct": 14.885496183206106,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "unknown",
+          "lead_count": 186,
+          "observed_won_count": 40,
+          "unmatched_won_count": 146,
+          "observed_won_pct": 21.50537634408602,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "social",
+          "lead_count": 139,
+          "observed_won_count": 16,
+          "unmatched_won_count": 123,
+          "observed_won_pct": 11.510791366906474,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "direct_traffic",
+          "lead_count": 80,
+          "observed_won_count": 7,
+          "unmatched_won_count": 73,
+          "observed_won_pct": 8.75,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "email",
+          "lead_count": 74,
+          "observed_won_count": 4,
+          "unmatched_won_count": 70,
+          "observed_won_pct": 5.405405405405405,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "referral",
+          "lead_count": 38,
+          "observed_won_count": 2,
+          "unmatched_won_count": 36,
+          "observed_won_pct": 5.2631578947368425,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "other",
+          "lead_count": 22,
+          "observed_won_count": 1,
+          "unmatched_won_count": 21,
+          "observed_won_pct": 4.545454545454546,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "display",
+          "lead_count": 16,
+          "observed_won_count": 1,
+          "unmatched_won_count": 15,
+          "observed_won_pct": 6.25,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "(未记录)",
+          "lead_count": 9,
+          "observed_won_count": 4,
+          "unmatched_won_count": 5,
+          "observed_won_pct": 44.44444444444444,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "other_publicities",
+          "lead_count": 8,
+          "observed_won_count": 1,
+          "unmatched_won_count": 7,
+          "observed_won_pct": 12.5,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "organic_search",
+          "lead_count": 349,
+          "observed_won_count": 59,
+          "unmatched_won_count": 290,
+          "observed_won_pct": 16.9054441260745,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "social",
+          "lead_count": 325,
+          "observed_won_count": 16,
+          "unmatched_won_count": 309,
+          "observed_won_pct": 4.923076923076923,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "paid_search",
+          "lead_count": 272,
+          "observed_won_count": 43,
+          "unmatched_won_count": 229,
+          "observed_won_pct": 15.808823529411764,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "unknown",
+          "lead_count": 166,
+          "observed_won_count": 35,
+          "unmatched_won_count": 131,
+          "observed_won_pct": 21.08433734939759,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "direct_traffic",
+          "lead_count": 75,
+          "observed_won_count": 13,
+          "unmatched_won_count": 62,
+          "observed_won_pct": 17.333333333333332,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "email",
+          "lead_count": 50,
+          "observed_won_count": 3,
+          "unmatched_won_count": 47,
+          "observed_won_pct": 6.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "referral",
+          "lead_count": 45,
+          "observed_won_count": 8,
+          "unmatched_won_count": 37,
+          "observed_won_pct": 17.77777777777778,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "other",
+          "lead_count": 26,
+          "observed_won_count": 2,
+          "unmatched_won_count": 24,
+          "observed_won_pct": 7.6923076923076925,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "display",
+          "lead_count": 19,
+          "observed_won_count": 2,
+          "unmatched_won_count": 17,
+          "observed_won_pct": 10.526315789473685,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "(未记录)",
+          "lead_count": 13,
+          "observed_won_count": 2,
+          "unmatched_won_count": 11,
+          "observed_won_pct": 15.384615384615385,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "other_publicities",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "unmatched_won_count": 12,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "organic_search",
+          "lead_count": 344,
+          "observed_won_count": 42,
+          "unmatched_won_count": 302,
+          "observed_won_pct": 12.209302325581396,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "social",
+          "lead_count": 269,
+          "observed_won_count": 11,
+          "unmatched_won_count": 258,
+          "observed_won_pct": 4.089219330855019,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "paid_search",
+          "lead_count": 266,
+          "observed_won_count": 30,
+          "unmatched_won_count": 236,
+          "observed_won_pct": 11.278195488721805,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "unknown",
+          "lead_count": 154,
+          "observed_won_count": 26,
+          "unmatched_won_count": 128,
+          "observed_won_pct": 16.883116883116884,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "email",
+          "lead_count": 94,
+          "observed_won_count": 2,
+          "unmatched_won_count": 92,
+          "observed_won_pct": 2.127659574468085,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "direct_traffic",
+          "lead_count": 78,
+          "observed_won_count": 7,
+          "unmatched_won_count": 71,
+          "observed_won_pct": 8.974358974358974,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "referral",
+          "lead_count": 53,
+          "observed_won_count": 8,
+          "unmatched_won_count": 45,
+          "observed_won_pct": 15.09433962264151,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "(未记录)",
+          "lead_count": 14,
+          "observed_won_count": 3,
+          "unmatched_won_count": 11,
+          "observed_won_pct": 21.428571428571427,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "display",
+          "lead_count": 11,
+          "observed_won_count": 1,
+          "unmatched_won_count": 10,
+          "observed_won_pct": 9.090909090909092,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "other",
+          "lead_count": 11,
+          "observed_won_count": 0,
+          "unmatched_won_count": 11,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "other_publicities",
+          "lead_count": 9,
+          "observed_won_count": 0,
+          "unmatched_won_count": 9,
+          "observed_won_pct": 0.0,
+          "date_issue_count": 0
+        }
+      ]
+    }
+  }
+}

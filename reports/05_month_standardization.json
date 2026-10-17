@@ -1,0 +1,473 @@
+{
+  "stage": "05_descriptive_month_standardization",
+  "generated_at_utc": "2026-10-17T03:18:41.805343+00:00",
+  "protocol": {
+    "channels": [
+      "organic_search",
+      "paid_search",
+      "social"
+    ],
+    "common_month_rule": "共同首次联系月份：三个指定来源分别都有至少1条线索；不按签约数筛选。",
+    "weight_target": "共同月份内三个指定来源合并后的样本月份构成；不代表全企业或全来源。",
+    "weight_formula": "该月三个来源合并线索数 / 所有共同月份三个来源合并线索数",
+    "standardization_formula": "SUM(同一套月份权重 * 该来源该月记录内可见签约占比)",
+    "date_anomaly_policy": "沿用04：日期冲突记录保留在匹配签约与线索计数中，另列标记。",
+    "scope": "描述性月份构成调整；不统一随访时长、不解释为因果效果、不进行显著性检验。"
+  },
+  "common_months": [
+    "2017-07",
+    "2017-08",
+    "2017-09",
+    "2017-10",
+    "2017-11",
+    "2017-12",
+    "2018-01",
+    "2018-02",
+    "2018-03",
+    "2018-04",
+    "2018-05"
+  ],
+  "excluded_source_months": [
+    "2017-06"
+  ],
+  "pooled_month_counts": {
+    "2017-07": 122,
+    "2017-08": 246,
+    "2017-09": 198,
+    "2017-10": 277,
+    "2017-11": 286,
+    "2017-12": 134,
+    "2018-01": 744,
+    "2018-02": 659,
+    "2018-03": 741,
+    "2018-04": 946,
+    "2018-05": 879
+  },
+  "shared_weight_lead_count": 5232,
+  "month_weight_sum": 1.0,
+  "database_sha256": "58ee16bf244689d6c23d7e7ec385bbc74fd01eca7e1d1ab9edc93c22c2e20284",
+  "source_sha256": {
+    "olist_marketing_qualified_leads_dataset.csv": "5537753b7549ce4068e52e2402c29f2773c5375fc0575520ae8f3f301f666573",
+    "olist_closed_deals_dataset.csv": "1433f402d8fff00ca167579de641d9525f6e846368958c166f699ef1b0c31f3d"
+  },
+  "database_and_raw_csv_unchanged": true,
+  "sql_matches_independent_exact_fraction_calculation": true,
+  "queries": {
+    "summary": {
+      "file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\05_month_standardization.sql",
+      "sha256": "1f7549a3074cba4b6140cf7b8886be42a1f59603b9dfbf22061cdfc4e5cbfc73",
+      "executed_sql": "-- 第五步：三来源使用相同的首次联系月份权重。\n-- 本次方案固定比较自然搜索、付费搜索、社交。\n-- 共同月份只按每来源是否有线索确定，不按签约数筛选。\n-- 权重目标：共同月份内这三来源合并后的样本月份构成。\n\nWITH selected_channels(channel) AS (\n    VALUES ('organic_search'), ('paid_search'), ('social')\n),\nmonthly AS (\n    SELECT first_contact_month AS contact_month,\n           origin_group AS channel,\n           COUNT(*) AS lead_count,\n           SUM(has_observed_won) AS won_count,\n           SUM(date_order_issue) AS date_issue_count\n    FROM lead_overview\n    WHERE origin_group IN (SELECT channel FROM selected_channels)\n    GROUP BY first_contact_month, origin_group\n),\ncommon_months AS (\n    SELECT contact_month\n    FROM monthly\n    GROUP BY contact_month\n    HAVING COUNT(*) = (SELECT COUNT(*) FROM selected_channels)\n),\npooled_months AS (\n    SELECT m.contact_month, SUM(m.lead_count) AS pooled_lead_count\n    FROM monthly AS m\n    JOIN common_months AS c ON m.contact_month = c.contact_month\n    GROUP BY m.contact_month\n),\nweights AS (\n    SELECT contact_month,\n           pooled_lead_count,\n           1.0 * pooled_lead_count / SUM(pooled_lead_count) OVER () AS month_weight\n    FROM pooled_months\n),\nall_counts AS (\n    SELECT channel, SUM(lead_count) AS all_lead_count, SUM(won_count) AS all_won_count\n    FROM monthly\n    GROUP BY channel\n),\ncommon_results AS (\n    SELECT m.channel,\n           SUM(m.lead_count) AS common_lead_count,\n           SUM(m.won_count) AS common_won_count,\n           SUM(w.month_weight * 100.0 * m.won_count / m.lead_count) AS standardized_won_pct,\n           COUNT(*) AS common_month_count,\n           SUM(m.date_issue_count) AS common_date_issue_count\n    FROM monthly AS m\n    JOIN weights AS w ON m.contact_month = w.contact_month\n    GROUP BY m.channel\n)\nSELECT a.channel,\n       a.all_lead_count,\n       a.all_won_count,\n       100.0 * a.all_won_count / a.all_lead_count AS all_observed_won_pct,\n       c.common_lead_count,\n       c.common_won_count,\n       100.0 * c.common_won_count / c.common_lead_count AS common_observed_won_pct,\n       c.standardized_won_pct,\n       c.common_month_count,\n       (SELECT SUM(pooled_lead_count) FROM pooled_months) AS shared_weight_lead_count,\n       c.common_date_issue_count\nFROM all_counts AS a\nJOIN common_results AS c ON a.channel = c.channel\nORDER BY a.channel;",
+      "rows": [
+        {
+          "channel": "organic_search",
+          "all_lead_count": 2296,
+          "all_won_count": 271,
+          "all_observed_won_pct": 11.803135888501743,
+          "common_lead_count": 2296,
+          "common_won_count": 271,
+          "common_observed_won_pct": 11.803135888501743,
+          "standardized_won_pct": 11.849966206513601,
+          "common_month_count": 11,
+          "shared_weight_lead_count": 5232,
+          "common_date_issue_count": 1
+        },
+        {
+          "channel": "paid_search",
+          "all_lead_count": 1586,
+          "all_won_count": 195,
+          "all_observed_won_pct": 12.295081967213115,
+          "common_lead_count": 1586,
+          "common_won_count": 195,
+          "common_observed_won_pct": 12.295081967213115,
+          "standardized_won_pct": 12.371436209466992,
+          "common_month_count": 11,
+          "shared_weight_lead_count": 5232,
+          "common_date_issue_count": 0
+        },
+        {
+          "channel": "social",
+          "all_lead_count": 1350,
+          "all_won_count": 75,
+          "all_observed_won_pct": 5.555555555555555,
+          "common_lead_count": 1350,
+          "common_won_count": 75,
+          "common_observed_won_pct": 5.555555555555555,
+          "standardized_won_pct": 5.8679966821947565,
+          "common_month_count": 11,
+          "shared_weight_lead_count": 5232,
+          "common_date_issue_count": 0
+        }
+      ]
+    },
+    "details": {
+      "file": "D:\\github-upload\\olist_channel_analysis_starter\\sql\\05_month_weights.sql",
+      "sha256": "ccc15ef30abffa83bba5e6a646cd1cf8fa718fa477f7f21bc98028c0bb16ad45",
+      "executed_sql": "-- 月份权重及各来源的月内占比；保留未舍入数参与加权。\n-- 同一个月份的month_weight，对三来源完全相同。\n-- weighted_contribution_pp是该月对最终标准化占比的贡献，单位为百分点。\n\nWITH selected_channels(channel) AS (\n    VALUES ('organic_search'), ('paid_search'), ('social')\n),\nmonthly AS (\n    SELECT first_contact_month AS contact_month,\n           origin_group AS channel,\n           COUNT(*) AS lead_count,\n           SUM(has_observed_won) AS won_count,\n           SUM(date_order_issue) AS date_issue_count\n    FROM lead_overview\n    WHERE origin_group IN (SELECT channel FROM selected_channels)\n    GROUP BY first_contact_month, origin_group\n),\ncommon_months AS (\n    SELECT contact_month\n    FROM monthly\n    GROUP BY contact_month\n    HAVING COUNT(*) = (SELECT COUNT(*) FROM selected_channels)\n),\npooled_months AS (\n    SELECT m.contact_month, SUM(m.lead_count) AS pooled_lead_count\n    FROM monthly AS m\n    JOIN common_months AS c ON m.contact_month = c.contact_month\n    GROUP BY m.contact_month\n),\nweights AS (\n    SELECT contact_month,\n           pooled_lead_count,\n           1.0 * pooled_lead_count / SUM(pooled_lead_count) OVER () AS month_weight\n    FROM pooled_months\n)\nSELECT m.contact_month,\n       m.channel,\n       m.lead_count,\n       m.won_count AS observed_won_count,\n       100.0 * m.won_count / m.lead_count AS observed_won_pct,\n       w.pooled_lead_count,\n       w.month_weight,\n       w.month_weight * 100.0 * m.won_count / m.lead_count AS weighted_contribution_pp,\n       m.date_issue_count\nFROM monthly AS m\nJOIN weights AS w ON m.contact_month = w.contact_month\nORDER BY m.contact_month, m.channel;",
+      "rows": [
+        {
+          "contact_month": "2017-07",
+          "channel": "organic_search",
+          "lead_count": 54,
+          "observed_won_count": 0,
+          "observed_won_pct": 0.0,
+          "pooled_lead_count": 122,
+          "month_weight": 0.023318042813455658,
+          "weighted_contribution_pp": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "paid_search",
+          "lead_count": 56,
+          "observed_won_count": 0,
+          "observed_won_pct": 0.0,
+          "pooled_lead_count": 122,
+          "month_weight": 0.023318042813455658,
+          "weighted_contribution_pp": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-07",
+          "channel": "social",
+          "lead_count": 12,
+          "observed_won_count": 0,
+          "observed_won_pct": 0.0,
+          "pooled_lead_count": 122,
+          "month_weight": 0.023318042813455658,
+          "weighted_contribution_pp": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "organic_search",
+          "lead_count": 122,
+          "observed_won_count": 2,
+          "observed_won_pct": 1.639344262295082,
+          "pooled_lead_count": 246,
+          "month_weight": 0.047018348623853214,
+          "weighted_contribution_pp": 0.07707926003910362,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "paid_search",
+          "lead_count": 79,
+          "observed_won_count": 3,
+          "observed_won_pct": 3.7974683544303796,
+          "pooled_lead_count": 246,
+          "month_weight": 0.047018348623853214,
+          "weighted_contribution_pp": 0.17855069097665777,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-08",
+          "channel": "social",
+          "lead_count": 45,
+          "observed_won_count": 3,
+          "observed_won_pct": 6.666666666666667,
+          "pooled_lead_count": 246,
+          "month_weight": 0.047018348623853214,
+          "weighted_contribution_pp": 0.3134556574923547,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "organic_search",
+          "lead_count": 78,
+          "observed_won_count": 5,
+          "observed_won_pct": 6.410256410256411,
+          "pooled_lead_count": 198,
+          "month_weight": 0.03784403669724771,
+          "weighted_contribution_pp": 0.24258997882851097,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "paid_search",
+          "lead_count": 64,
+          "observed_won_count": 2,
+          "observed_won_pct": 3.125,
+          "pooled_lead_count": 198,
+          "month_weight": 0.03784403669724771,
+          "weighted_contribution_pp": 0.11826261467889909,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-09",
+          "channel": "social",
+          "lead_count": 56,
+          "observed_won_count": 0,
+          "observed_won_pct": 0.0,
+          "pooled_lead_count": 198,
+          "month_weight": 0.03784403669724771,
+          "weighted_contribution_pp": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "organic_search",
+          "lead_count": 125,
+          "observed_won_count": 1,
+          "observed_won_pct": 0.8,
+          "pooled_lead_count": 277,
+          "month_weight": 0.0529434250764526,
+          "weighted_contribution_pp": 0.04235474006116208,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "paid_search",
+          "lead_count": 100,
+          "observed_won_count": 7,
+          "observed_won_pct": 7.0,
+          "pooled_lead_count": 277,
+          "month_weight": 0.0529434250764526,
+          "weighted_contribution_pp": 0.37060397553516816,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-10",
+          "channel": "social",
+          "lead_count": 52,
+          "observed_won_count": 2,
+          "observed_won_pct": 3.8461538461538463,
+          "pooled_lead_count": 277,
+          "month_weight": 0.0529434250764526,
+          "weighted_contribution_pp": 0.20362855798635612,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "organic_search",
+          "lead_count": 121,
+          "observed_won_count": 4,
+          "observed_won_pct": 3.3057851239669422,
+          "pooled_lead_count": 286,
+          "month_weight": 0.05466360856269113,
+          "weighted_contribution_pp": 0.1807061440088963,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "paid_search",
+          "lead_count": 70,
+          "observed_won_count": 6,
+          "observed_won_pct": 8.571428571428571,
+          "pooled_lead_count": 286,
+          "month_weight": 0.05466360856269113,
+          "weighted_contribution_pp": 0.4685452162516383,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-11",
+          "channel": "social",
+          "lead_count": 95,
+          "observed_won_count": 4,
+          "observed_won_pct": 4.2105263157894735,
+          "pooled_lead_count": 286,
+          "month_weight": 0.05466360856269113,
+          "weighted_contribution_pp": 0.23016256236922583,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "organic_search",
+          "lead_count": 60,
+          "observed_won_count": 4,
+          "observed_won_pct": 6.666666666666667,
+          "pooled_lead_count": 134,
+          "month_weight": 0.025611620795107034,
+          "weighted_contribution_pp": 0.1707441386340469,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "paid_search",
+          "lead_count": 35,
+          "observed_won_count": 2,
+          "observed_won_pct": 5.714285714285714,
+          "pooled_lead_count": 134,
+          "month_weight": 0.025611620795107034,
+          "weighted_contribution_pp": 0.14635211882918306,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2017-12",
+          "channel": "social",
+          "lead_count": 39,
+          "observed_won_count": 0,
+          "observed_won_pct": 0.0,
+          "pooled_lead_count": 134,
+          "month_weight": 0.025611620795107034,
+          "weighted_contribution_pp": 0.0,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "organic_search",
+          "lead_count": 412,
+          "observed_won_count": 63,
+          "observed_won_pct": 15.29126213592233,
+          "pooled_lead_count": 744,
+          "month_weight": 0.14220183486238533,
+          "weighted_contribution_pp": 2.1744455330898727,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "paid_search",
+          "lead_count": 170,
+          "observed_won_count": 20,
+          "observed_won_pct": 11.764705882352942,
+          "pooled_lead_count": 744,
+          "month_weight": 0.14220183486238533,
+          "weighted_contribution_pp": 1.6729627630868864,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-01",
+          "channel": "social",
+          "lead_count": 162,
+          "observed_won_count": 8,
+          "observed_won_pct": 4.938271604938271,
+          "pooled_lead_count": 744,
+          "month_weight": 0.14220183486238533,
+          "weighted_contribution_pp": 0.7022312832710387,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "organic_search",
+          "lead_count": 291,
+          "observed_won_count": 39,
+          "observed_won_pct": 13.402061855670103,
+          "pooled_lead_count": 659,
+          "month_weight": 0.12595565749235474,
+          "weighted_contribution_pp": 1.6880655127841357,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "paid_search",
+          "lead_count": 212,
+          "observed_won_count": 43,
+          "observed_won_pct": 20.28301886792453,
+          "pooled_lead_count": 659,
+          "month_weight": 0.12595565749235474,
+          "weighted_contribution_pp": 2.5547609774392708,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-02",
+          "channel": "social",
+          "lead_count": 156,
+          "observed_won_count": 15,
+          "observed_won_pct": 9.615384615384615,
+          "pooled_lead_count": 659,
+          "month_weight": 0.12595565749235474,
+          "weighted_contribution_pp": 1.2111120912726416,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "organic_search",
+          "lead_count": 340,
+          "observed_won_count": 52,
+          "observed_won_pct": 15.294117647058824,
+          "pooled_lead_count": 741,
+          "month_weight": 0.14162844036697247,
+          "weighted_contribution_pp": 2.166082029141932,
+          "date_issue_count": 1
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "paid_search",
+          "lead_count": 262,
+          "observed_won_count": 39,
+          "observed_won_pct": 14.885496183206106,
+          "pooled_lead_count": 741,
+          "month_weight": 0.14162844036697247,
+          "weighted_contribution_pp": 2.1082096085160025,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-03",
+          "channel": "social",
+          "lead_count": 139,
+          "observed_won_count": 16,
+          "observed_won_pct": 11.510791366906474,
+          "pooled_lead_count": 741,
+          "month_weight": 0.14162844036697247,
+          "weighted_contribution_pp": 1.6302554286845752,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "organic_search",
+          "lead_count": 349,
+          "observed_won_count": 59,
+          "observed_won_pct": 16.9054441260745,
+          "pooled_lead_count": 946,
+          "month_weight": 0.18081039755351683,
+          "weighted_contribution_pp": 3.0566800732542956,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "paid_search",
+          "lead_count": 272,
+          "observed_won_count": 43,
+          "observed_won_pct": 15.808823529411764,
+          "pooled_lead_count": 946,
+          "month_weight": 0.18081039755351683,
+          "weighted_contribution_pp": 2.858399667206332,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-04",
+          "channel": "social",
+          "lead_count": 325,
+          "observed_won_count": 16,
+          "observed_won_pct": 4.923076923076923,
+          "pooled_lead_count": 946,
+          "month_weight": 0.18081039755351683,
+          "weighted_contribution_pp": 0.8901434956480828,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "organic_search",
+          "lead_count": 344,
+          "observed_won_count": 42,
+          "observed_won_pct": 12.209302325581396,
+          "pooled_lead_count": 879,
+          "month_weight": 0.1680045871559633,
+          "weighted_contribution_pp": 2.051218796671645,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "paid_search",
+          "lead_count": 266,
+          "observed_won_count": 30,
+          "observed_won_pct": 11.278195488721805,
+          "pooled_lead_count": 879,
+          "month_weight": 0.1680045871559633,
+          "weighted_contribution_pp": 1.8947885769469546,
+          "date_issue_count": 0
+        },
+        {
+          "contact_month": "2018-05",
+          "channel": "social",
+          "lead_count": 269,
+          "observed_won_count": 11,
+          "observed_won_pct": 4.089219330855019,
+          "pooled_lead_count": 879,
+          "month_weight": 0.1680045871559633,
+          "weighted_contribution_pp": 0.687007605470482,
+          "date_issue_count": 0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1008pt" height="561.6pt" viewBox="0 0 1008 561.6" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Olist local plotting script</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 561.6 
+L 1008 561.6 
+L 1008 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 151.2 426.816 
+L 579.6 426.816 
+L 579.6 123.552 
+L 151.2 123.552 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <path d="M 151.2 426.816 
+L 151.2 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_2"/>
+     <g id="text_1">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="151.2" y="442.609125" transform="rotate(-0 151.2 442.609125)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_3">
+      <path d="M 206.047135 426.816 
+L 206.047135 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_4"/>
+     <g id="text_2">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="206.047135" y="442.609125" transform="rotate(-0 206.047135 442.609125)">50</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_5">
+      <path d="M 260.894269 426.816 
+L 260.894269 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_6"/>
+     <g id="text_3">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="260.894269" y="442.609125" transform="rotate(-0 260.894269 442.609125)">100</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_7">
+      <path d="M 315.741404 426.816 
+L 315.741404 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_8"/>
+     <g id="text_4">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="315.741404" y="442.609125" transform="rotate(-0 315.741404 442.609125)">150</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_9">
+      <path d="M 370.588539 426.816 
+L 370.588539 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_10"/>
+     <g id="text_5">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="370.588539" y="442.609125" transform="rotate(-0 370.588539 442.609125)">200</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_11">
+      <path d="M 425.435674 426.816 
+L 425.435674 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_12"/>
+     <g id="text_6">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="425.435674" y="442.609125" transform="rotate(-0 425.435674 442.609125)">250</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_13">
+      <path d="M 480.282808 426.816 
+L 480.282808 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_14"/>
+     <g id="text_7">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="480.282808" y="442.609125" transform="rotate(-0 480.282808 442.609125)">300</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_15">
+      <path d="M 535.129943 426.816 
+L 535.129943 123.552 
+" clip-path="url(#pb44770d066)" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_16"/>
+     <g id="text_8">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="535.129943" y="442.609125" transform="rotate(-0 535.129943 442.609125)">350</text>
+     </g>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="365.4" y="458.136781" transform="rotate(-0 365.4 458.136781)">可见签约记录数（条）</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_17"/>
+     <g id="text_10">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="155.39383" transform="rotate(-0 144.2 155.39383)">0–7天</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_18"/>
+     <g id="text_11">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="205.068523" transform="rotate(-0 144.2 205.068523)">8–30天</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_19"/>
+     <g id="text_12">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="254.743216" transform="rotate(-0 144.2 254.743216)">31–60天</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_20"/>
+     <g id="text_13">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="304.417909" transform="rotate(-0 144.2 304.417909)">61–90天</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_21"/>
+     <g id="text_14">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="354.092602" transform="rotate(-0 144.2 354.092602)">91–180天</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_22"/>
+     <g id="text_15">
+      <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: end; fill: #193641" x="144.2" y="403.767295" transform="rotate(-0 144.2 403.767295)">181天及以上</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_3">
+    <path d="M 151.2 137.336727 
+L 461.634783 137.336727 
+L 461.634783 164.657808 
+L 151.2 164.657808 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 151.2 187.01142 
+L 448.47147 187.01142 
+L 448.47147 214.332501 
+L 151.2 214.332501 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 151.2 236.686113 
+L 252.118728 236.686113 
+L 252.118728 264.007194 
+L 151.2 264.007194 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 151.2 286.360806 
+L 200.562421 286.360806 
+L 200.562421 313.681887 
+L 151.2 313.681887 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 151.2 336.035499 
+L 242.246244 336.035499 
+L 242.246244 363.35658 
+L 151.2 363.35658 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 151.2 385.710192 
+L 224.695161 385.710192 
+L 224.695161 413.031273 
+L 151.2 413.031273 
+z
+" clip-path="url(#pb44770d066)" style="fill: #528d9f"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 151.2 426.816 
+L 579.6 426.816 
+" style="fill: none; stroke: #e4ebee; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_16">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="469.313381" y="154.026565" transform="rotate(-0 469.313381 154.026565)">283  (33.65%)</text>
+   </g>
+   <g id="text_17">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="456.150069" y="203.701258" transform="rotate(-0 456.150069 203.701258)">271  (32.22%)</text>
+   </g>
+   <g id="text_18">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="259.797327" y="253.37595" transform="rotate(-0 259.797327 253.37595)">92  (10.94%)</text>
+   </g>
+   <g id="text_19">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="208.24102" y="303.050643" transform="rotate(-0 208.24102 303.050643)">45  (5.35%)</text>
+   </g>
+   <g id="text_20">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="249.924843" y="352.725336" transform="rotate(-0 249.924843 352.725336)">83  (9.87%)</text>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="232.373759" y="402.400029" transform="rotate(-0 232.373759 402.400029)">67  (7.97%)</text>
+   </g>
+  </g>
+  <g id="patch_10">
+   <path d="M 660.24 432.432 
+L 957.6 432.432 
+L 957.6 117.936 
+L 660.24 117.936 
+z
+" style="fill: #eff4f6"/>
+  </g>
+  <g id="text_22">
+   <text style="font-weight: 700; font-size: 21px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="55.44" y="44.866875" transform="rotate(-0 55.44 44.866875)">仅有效已签约者：日历时长区间分布</text>
+  </g>
+  <g id="text_23">
+   <text style="font-size: 10.8px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="68.023125" transform="rotate(-0 55.44 68.023125)">全部来源  |  文件内已观察签约且日期有效的841条记录  |  1条负时长单列</text>
+  </g>
+  <g id="text_24">
+   <text style="font-weight: 700; font-size: 13px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="680.4" y="140.4" transform="rotate(-0 680.4 140.4)">这841条有效记录</text>
+  </g>
+  <g id="text_25">
+   <text style="font-weight: 700; font-size: 19px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="680.4" y="174.096" transform="rotate(-0 680.4 174.096)">中位数：14 天</text>
+  </g>
+  <g id="text_26">
+   <text style="font-size: 13px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #193641" x="680.4" y="207.792" transform="rotate(-0 680.4 207.792)">90%分位数：162 天</text>
+  </g>
+  <g id="text_27">
+   <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="680.4" y="255.528" transform="rotate(-0 680.4 255.528)">指定来源</text>
+  </g>
+  <g id="text_28">
+   <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="826.56" y="255.528" transform="rotate(-0 826.56 255.528)">有效数</text>
+  </g>
+  <g id="text_29">
+   <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #617580" x="927.36" y="255.528" transform="rotate(-0 927.36 255.528)">中位天数</text>
+  </g>
+  <g id="text_30">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #168578" x="680.4" y="289.224" transform="rotate(-0 680.4 289.224)">自然搜索</text>
+  </g>
+  <g id="text_31">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="826.56" y="289.224" transform="rotate(-0 826.56 289.224)">270</text>
+  </g>
+  <g id="text_32">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="927.36" y="289.224" transform="rotate(-0 927.36 289.224)">14.5</text>
+  </g>
+  <g id="text_33">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #426fa3" x="680.4" y="325.728" transform="rotate(-0 680.4 325.728)">付费搜索</text>
+  </g>
+  <g id="text_34">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="826.56" y="325.728" transform="rotate(-0 826.56 325.728)">195</text>
+  </g>
+  <g id="text_35">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="927.36" y="325.728" transform="rotate(-0 927.36 325.728)">15</text>
+  </g>
+  <g id="text_36">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #c17c3a" x="680.4" y="362.232" transform="rotate(-0 680.4 362.232)">社交来源</text>
+  </g>
+  <g id="text_37">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="826.56" y="362.232" transform="rotate(-0 826.56 362.232)">75</text>
+  </g>
+  <g id="text_38">
+   <text style="font-size: 11px; font-family: 'Microsoft YaHei'; text-anchor: middle; fill: #193641" x="927.36" y="362.232" transform="rotate(-0 927.36 362.232)">30</text>
+  </g>
+  <g id="text_39">
+   <text style="font-size: 10.5px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="680.4" y="407.16" transform="rotate(-0 680.4 407.16)">以上只描述已经观察到签约者。</text>
+  </g>
+  <g id="text_40">
+   <text style="font-size: 9.2px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="519.53345" transform="rotate(-0 55.44 519.53345)">分母仅为日期有效的已观察签约者；未匹配线索不补0天，异常记录仍保留在前面04/05的匹配签约计数中。</text>
+  </g>
+  <g id="text_41">
+   <text style="font-size: 9.2px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="533.57345" transform="rotate(-0 55.44 533.57345)">日期相减是日历天数，0天表示同日。区间宽度不同，条长表示记录数，不表示单位天密度。</text>
+  </g>
+  <g id="text_42">
+   <text style="font-size: 9.2px; font-family: 'Microsoft YaHei'; text-anchor: start; fill: #617580" x="55.44" y="547.61345" transform="rotate(-0 55.44 547.61345)">来源：本地06诊断；不能据此代表全部线索的销售效率，也不能用P90确定完整随访窗口。</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pb44770d066">
+   <rect x="151.2" y="123.552" width="428.4" height="303.264"/>
+  </clipPath>
+ </defs>
+</svg>
