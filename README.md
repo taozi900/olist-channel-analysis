@@ -176,9 +176,10 @@ python -m venv .venv-olist
 SQL输出会核对原始CSV，报告记录实际执行的SQL、来源哈希和相关检查。分阶段报告中的绝对路径和时间戳来自生成环境，重跑后会更新；项目内链接使用相对路径。除Matplotlib外的间接依赖未完全锁定，不承诺跨环境图像逐字节相同。
 
 ## 数据来源、许可与协作说明
-- 数据来源：[MineThatData E-Mail Analytics Challenge（Hillstrom邮件营销实验数据）](https://www.minethatdata.com/Kevin_Hillstrom_MineThatData_E-MailAnalytics_DataMiningChallenge_2008.03.20.pdf)、[TensorFlow Datasets Hillstrom文档](https://www.tensorflow.org/datasets/catalog/hillstrom)。发布方说明为真实、匿名化、随机对照营销实验数据；本项目未独立审计其原始采集流程。
-- 数据许可：公开数据集可用于学术练习。原始文件、版本和校验说明见 `data/raw/SOURCE.md`，请保留署名、来源及许可说明。
-- 代码许可范围：仓库根目录的MIT许可证仅适用于本项目提供的Python代码，不对Hillstrom第三方数据和原始资料重新授权。数据及其分析导出、图表继续保留Hillstrom署名、来源和原许可说明。
-- Python代码、图表和文档由AI协助准备，学习者在本地运行并逐步学习分析口径。独立理解和编写能力需通过现场解释或练习证明，不把AI提供的代码全部表述为独立开发。
-- 本项目是公开数据练习，与Hillstrom、MineThatData无隶属关系，无企业上线或业务提升业绩。
+
+- 数据来源：[Olist官方Kaggle发布页](https://www.kaggle.com/datasets/olistbr/marketing-funnel-olist)、[Olist官方背景说明](https://github.com/olist/work-at-olist-marketing)。发布方说明为真实、匿名化、随机抽样的商家营销线索数据；本项目未独立审计其原始采集流程。
+- 数据许可：[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)。原始文件、版本和校验说明见[data/raw/SOURCE.md](data/raw/SOURCE.md)，请保留署名、来源及许可说明。
+- 代码许可范围：仓库根目录的MIT许可证仅适用于本项目提供的Python／SQL代码，不对Olist第三方数据和原始资料重新授权。数据及其分析导出、图表继续保留Olist署名、来源和原许可说明。
+- SQL、Python代码、图表和文档由AI协助准备，学习者在本地运行并逐步学习分析口径。独立理解和编写能力需通过现场解释或练习证明，不把AI提供的代码全部表述为独立开发。
+- 本项目是公开数据练习，与Olist无隶属关系，无企业上线或业务提升业绩。
 
